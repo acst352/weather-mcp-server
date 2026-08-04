@@ -3,6 +3,7 @@ import { StdioServerTransport } from "@modelcontextprotocol/sdk/server/stdio.js"
 import { StreamableHTTPServerTransport } from "@modelcontextprotocol/sdk/server/streamableHttp.js";
 import { createServer } from "node:http";
 import { registerWeatherTools } from "./tools/weather.js";
+import { registerWeatherResources } from "./resources/weather.js";
 
 /**
  * Servidor MCP con dos modos de transporte seleccionables en runtime:
@@ -23,6 +24,7 @@ const server = new McpServer({
 
 // Unica linea que toca tools/. Anade mas tools aqui a medida que crezca el servidor.
 registerWeatherTools(server);
+registerWeatherResources(server); 
 
 const transportType = process.env.TRANSPORT ?? "stdio";
 
